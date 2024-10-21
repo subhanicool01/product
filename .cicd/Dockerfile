@@ -6,9 +6,9 @@ ARG JAR_SOURCE
 ENV JAR_SOURCE ${JAR_SOURCE}
 ARG JAR_DEST
 ENV JAR_DEST ${JAR_DEST}
-RUN mkdir -p /opt/i27/
-WORKDIR /opt/i27/
-COPY ["${JAR_SOURCE}", "/opt/i27/i27-product.jar"]
-RUN chmod 777 /opt/i27/
+RUN mkdir -p /opt/product/
+WORKDIR /opt/product/
+COPY ["${JAR_SOURCE}", "/opt/product/product-service.jar"]
+RUN chmod 777 /opt/product/
 EXPOSE 8132
-CMD ["java", "-jar", "/opt/i27/i27-product.jar"]
+CMD ["java", "-jar", "/opt/product/product-service.jar"]
