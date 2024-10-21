@@ -37,6 +37,7 @@ pipeline {
         DOCKER_CREDS = credentials('subhanicool01_docker_creds')
         SONAR_URL = "http://34.68.126.198:9000"
         SONAR_TOKEN = credentials('sonar_creds')
+        PUBLIC_IP = "35.193.39.253"
     }
     tools {
         maven 'Maven-3.8.8'
@@ -206,22 +207,22 @@ def Dockerdeploy(env_Name, host_Port) {
                 // pulling the container
                 echo "pulling the container"
 
-                sh "sshpass -p ${PASSWORD} -v ssh -o StrictHostKeyChecking=no ${USERNAME}@162.222.183.110 docker pull ${env.DOCKER_HUB}/${env.SERVICE_NAME}:${GIT_COMMIT}"
+                sh "sshpass -p ${PASSWORD} -v ssh -o StrictHostKeyChecking=no ${USERNAME}@${PUBLIC_IP} docker pull ${env.DOCKER_HUB}/${env.SERVICE_NAME}:${GIT_COMMIT}"
                 try {
                     // stop the container 
                     echo "stopping the container"
-                    sh "sshpass -p ${PASSWORD} -v ssh -o StrictHostKeyChecking=no ${USERNAME}@162.222.183.110 docker stop ${env.SERVICE_NAME}-$env_Name"
+                    sh "sshpass -p ${PASSWORD} -v ssh -o StrictHostKeyChecking=no ${USERNAME}@${PUBLIC_IP} docker stop ${env.SERVICE_NAME}-$env_Name"
 
                     // remove the container
                     echo "removing the container"
-                    sh "sshpass -p ${PASSWORD} -v ssh -o StrictHostKeyChecking=no ${USERNAME}@162.222.183.110 docker rm ${env.SERVICE_NAME}-$env_Name"
+                    sh "sshpass -p ${PASSWORD} -v ssh -o StrictHostKeyChecking=no ${USERNAME}@${PUBLIC_IP} docker rm ${env.SERVICE_NAME}-$env_Name"
 
                 } catch(err) {
                     echo "Caught the error: $err"
                 }
                 // docker create a conatainer
                    echo "creating a new-container"
-                   sh "sshpass -p ${PASSWORD} -v ssh -o StrictHostKeyChecking=no ${USERNAME}@162.222.183.110 docker run -d -p $host_Port:8761 --name ${env.SERVICE_NAME}-$env_Name ${env.DOCKER_HUB}/${env.SERVICE_NAME}:${GIT_COMMIT}"
+                   sh "sshpass -p ${PASSWORD} -v ssh -o StrictHostKeyChecking=no ${USERNAME}@${PUBLIC_IP} docker run -d -p $host_Port:8132 --name ${env.SERVICE_NAME}-$env_Name ${env.DOCKER_HUB}/${env.SERVICE_NAME}:${GIT_COMMIT}"
 
 
             } 
