@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.learner</groupId>
-    <artifactId>i27-product</artifactId>
+    <artifactId>product-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>i27-product</name>
+    <name>product-service</name>
     <description>Product api</description>
     <properties>
         <java.version>17</java.version>
