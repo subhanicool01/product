@@ -10,5 +10,5 @@ RUN mkdir -p /opt/product/
 WORKDIR /opt/product/
 COPY ["${JAR_SOURCE}", "/opt/product/product-service.jar"]
 RUN chmod 777 /opt/product/
-EXPOSE 8132
+EXPOSE 4212
 CMD ["java", "-jar", "/opt/product/product-service.jar"]
