@@ -28,6 +28,7 @@ public class CategoryController {
         return "Created";
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/create-categories")
     public String createCategory(@RequestBody CategoryRequestBean categoryRequestBean) {
         return getString(categoryRequestBean, this.categoryRepository);
