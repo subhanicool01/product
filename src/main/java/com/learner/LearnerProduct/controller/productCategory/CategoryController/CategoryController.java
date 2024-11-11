@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/categories")
 public class CategoryController {
@@ -34,7 +34,7 @@ public class CategoryController {
         return getString(categoryRequestBean, this.categoryRepository);
     }
 
-    
+    @CrossOrigin("*")
     @GetMapping("/get-category-details")
     public List<Category> getAllCategories() {
         return this.categoryRepository.findAll();
