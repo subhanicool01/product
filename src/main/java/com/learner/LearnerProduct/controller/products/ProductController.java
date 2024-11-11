@@ -18,7 +18,7 @@ public class ProductController {
     private ProductRepository productRepository;
 
     // get all products
-    //@CrossOrigin("*")
+    @CrossOrigin("*")
     @GetMapping("get-products")
     public List<Product> getAllProducts() {
         return this.productRepository.findAll();
