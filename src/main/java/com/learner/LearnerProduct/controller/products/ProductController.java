@@ -18,7 +18,7 @@ public class ProductController {
     private ProductRepository productRepository;
 
     // get all products
-    @CrossOrigin("*")
+    @CrossOrigin(origins = "http://35.224.106.150")
     @GetMapping("get-products")
     public List<Product> getAllProducts() {
         return this.productRepository.findAll();
